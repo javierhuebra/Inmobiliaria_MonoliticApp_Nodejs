@@ -1,0 +1,28 @@
+SE INICIALIZA EL PROYECTO 
+- npm init
+
+SE CREA EL SCRIPT PARA QUE CORRA EL SERVIDOR EN EL PACKAGE.JSON
+"scripts": {
+    "start": "node ./index.js",
+},
+
+SE INSTALA EXPRESS
+- npm i express
+
+SE INSTALA NODEMON PARA QUE REINICIE EL SV CON LOS CAMBIOS
+-npm i -D nodemon
+
+SE CREA EL SCRIPT PARA QUE FUNCIONE NODEMON
+"scripts": {
+    "start": "node ./index.js",
+    "server": "nodemon index.js"
+},
+
+SE IMPORTA EXPRESS EN INDEX.JS CON COMMONJS (require('express'))
+
+PERO TAMBIEN SE PUEDE USAR LA FORMA NUEVA MODIFICANDO EL PACKAGE.JSON Y AGREGANDO TYPE:MODULE (para usar import)
+"type": "module",
+
+ESTE PROYECTO ES UNA APLICACIÓN MONOLÍTICA, SE INSTALA PUG COMO TEMPLATE ENGINE
+-npm i pug
+
