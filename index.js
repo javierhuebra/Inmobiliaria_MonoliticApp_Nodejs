@@ -1,9 +1,23 @@
 //const express = require('express') //CommonJSser
 import express from 'express' //ECMASCRIPT MODULE
 import usuarioRoutes from './routes/usuarioRoutes.js' //Tiene que tener el .js
+import db from './config/db.js'
 
 // Crear la app
 const app = express()
+
+//Habilitar lectura de datos de formularios
+app.use( express.urlencoded({extended: true}))
+
+//Conexion a la base de datos
+try{
+    await db.authenticate()
+    db.sync() //Para crear la tabla si no existe creo que es esto
+    console.log("Conexion correcta a la base de datos")
+
+}catch(error){
+    console.log(error)
+}
 
 // Habilitar Pug para que detecte donde estan las views y el tipo de template engine
 app.set('view engine', 'pug')
