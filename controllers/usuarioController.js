@@ -10,8 +10,12 @@ const formularioLogin = (req, res) => {
 }
 
 const formularioRegistro = (req, res) => {
+
+    console.log(req.csrfToken())//solo se activa en index.js y ya se usa aca
+
     res.render('auth/registro', {
-        pagina: 'Crear Cuenta'
+        pagina: 'Crear Cuenta',
+        csrfToken : req.csrfToken()
     })
 }
 
@@ -32,10 +36,11 @@ const registrar = async (req, res) => {
 
     //Verificar que el arr de errores usuario esté vacio
     if (!resultado.isEmpty()) {
-        console.log("usuario registrado ya")
+        /* console.log("usuario registrado ya") */
         //Errores
         return res.render('auth/registro', {
             pagina: 'Crear Cuenta',
+            csrfToken : req.csrfToken(),
             errores: resultado.array(),
             usuario: {
                 nombre: req.body.nombre,
@@ -59,6 +64,7 @@ const registrar = async (req, res) => {
 
         return res.render('auth/registro', {
             pagina: 'Crear Cuenta',
+            csrfToken : req.csrfToken(),
             errores: [{ msg: 'El usuario ya esta registrado' }],
             usuario: {
                 nombre: req.body.nombre,

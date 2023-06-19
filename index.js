@@ -1,5 +1,7 @@
 //const express = require('express') //CommonJSser
 import express from 'express' //ECMASCRIPT MODULE
+import csrf from 'csurf'
+import cookieParser from 'cookie-parser'
 import usuarioRoutes from './routes/usuarioRoutes.js' //Tiene que tener el .js
 import db from './config/db.js'
 
@@ -8,6 +10,12 @@ const app = express()
 
 //Habilitar lectura de datos de formularios
 app.use( express.urlencoded({extended: true}))
+
+//Habilitar cookie parser
+app.use( cookieParser() )
+
+//Habilitar el CSRF 
+app.use( csrf({cookie: true}) )
 
 //Conexion a la base de datos
 try{
